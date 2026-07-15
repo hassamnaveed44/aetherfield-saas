@@ -24,7 +24,7 @@ export default function Navbar() {
   const logoText: string = "ActionField";
 
   return (
-    <nav className="w-full h-20 bg-gradient-to-b from-sky-100 to-sky-100 text-[#0F172A] font-sans">
+    <nav className="w-full h-20 bg-gradient-to-b from-sky-200 to-sky-100 text-[#0F172A] font-sans">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-1 py-2 md:py-5">
         {/* Logo */}
         <Link
