@@ -14,8 +14,8 @@ interface NavItem {
 const NAVIGATION_LINKS: NavItem[] = [
   { id: "1", label: "Product", url: "#product" },
   { id: "2", label: "Journal", url: "/journal" },
-  { id: "3", label: "About", url: "#about" },
-  { id: "4", label: "Careers", url: "#careers" },
+  { id: "3", label: "About", url: "/about" },
+  { id: "4", label: "Careers", url: "/careers" },
   { id: "5", label: "Get started →", url: "#get-started", isButton: true },
 ];
 
