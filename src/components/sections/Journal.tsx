@@ -36,7 +36,7 @@ export default function JournalSection() {
           {/* Sticker container: 'hidden md:block' ensures it is hidden on mobile and visible on desktop */}
           <div className="hidden md:block w-60 h-60 flex-shrink-0 relative">
             <Image 
-              src="/images/sticker-container.png"
+              src="/images/stickercontainer.png"
               alt="Aetherfield Journal Sticker"
               fill
               className="object-contain"
