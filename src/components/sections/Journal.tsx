@@ -1,3 +1,4 @@
+/* STREAMING_CHUNK:Updating JournalSection to hide sticker on mobile... */
 import React from 'react';
 import Image from 'next/image';
 
@@ -30,14 +31,18 @@ export default function JournalSection() {
     <section className="w-full py-24 bg-white">
       <div className="max-w-4xl mx-auto px-6">
 
-        {/* Header with decorative stamp */}
-        <div className="flex items-center gap-8 mb-16">
-          <div className="w-32 h-32 flex-shrink-0 border border-sky-200 rounded-full flex items-center justify-center p-4">
-             <div className="text-center font-bold text-sky-600 text-xs tracking-tight uppercase leading-tight">
-               Aetherfield<br />Journal
-             </div>
+        {/* Responsive Header Section */}
+        <div className="flex flex-col md:flex-row items-center md:items-center gap-6 mb-16">
+          {/* Sticker container: 'hidden md:block' ensures it is hidden on mobile and visible on desktop */}
+          <div className="hidden md:block w-60 h-60 flex-shrink-0 relative">
+            <Image 
+              src="/images/sticker container.png"
+              alt="Aetherfield Journal Sticker"
+              fill
+              className="object-contain"
+            />
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight text-center md:text-left">
             From the journal
           </h2>
         </div>
