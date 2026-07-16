@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link"; // CHANGED: added Link so "View role"/"Apply now" can navigate
 import Container from "@/components/layout/Container";
 
 interface JobListing {
@@ -86,12 +87,16 @@ export default function CareersHero() {
                   </p>
                 </div>
 
-                <button
-                  type="button"
-                  className="w-25 shrink-0 rounded-md bg-ink px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-85 active:scale-95 sm:w-auto"
+                {/* CHANGED: swapped <button> for a Link styled identically,
+                    so it keeps the exact same look but now navigates to
+                    /carrers/[id] — matches the folder name in the project
+                    (currently "carrers", not "careers"). */}
+                <Link
+                  href={`/carrers/${job.id}`}
+                  className="w-25 shrink-0 rounded-md bg-ink px-4 py-2 text-center text-sm font-semibold text-white transition-opacity hover:opacity-85 active:scale-95 sm:w-auto"
                 >
                   {job.isOpenApplication ? "Apply now" : "View role"}
-                </button>
+                </Link>
               </div>
 
               <p className="mt-3 text-sm leading-relaxed text-ink-soft">
