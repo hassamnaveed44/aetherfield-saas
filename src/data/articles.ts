@@ -8,7 +8,7 @@ export const articles: Article[] = [
       "A practical guide for sustainability teams on integrating emissions, waste, and energy data into modern workflows.",
     category: "Insights",
     readTime: "4 min",
-    imageSrc: "/images/blogimg1.png",
+    imageSrc: "/images/articleimg1.png",
   },
   {
     id: "sustainability-not-a-side-project",
@@ -55,4 +55,5 @@ export const articles: Article[] = [
     readTime: "5 min",
     imageSrc: "/images/blogimg6.png",
   },
+  
 ];

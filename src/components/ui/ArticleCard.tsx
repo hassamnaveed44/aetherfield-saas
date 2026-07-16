@@ -14,7 +14,7 @@ interface ArticleCardProps {
 export default function ArticleCard({ article }: ArticleCardProps) {
   return (
     <article className="group">
-      <a href={`/journal/${article.id}`} className="block focus-visible:outline-none">
+      <a href={`/article/${article.id}`} className="block focus-visible:outline-none">
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-sand">
           <Image
             src={article.imageSrc}
