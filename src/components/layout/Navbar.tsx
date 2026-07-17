@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -19,26 +19,56 @@ const NAVIGATION_LINKS: NavItem[] = [
   { id: "5", label: "Get started →", url: "#get-started", isButton: true },
 ];
 
-type NavbarBackground = "blue" | "white";
+type NavbarBackground = "blue" | "white" | "transparent" | "adaptive";
 
 /** One class string per background option — add more here as needed. */
-const BACKGROUND_CLASSNAMES: Record<NavbarBackground, string> = {
+const BACKGROUND_CLASSNAMES: Record<Exclude<NavbarBackground, "adaptive">, string> = {
   blue: "bg-gradient-to-b from-sky-200 to-sky-100",
   white: "bg-white",
+  // Fully transparent — no fill, no border. Whatever background color/image
+  // the page itself has shows straight through; only the blur is added.
+  transparent: "bg-transparent backdrop-blur-md",
 };
 
 interface NavbarProps {
-  /** Background style for this page's navbar. Defaults to "white". */
+  /**
+   * Background style for this page's navbar. Defaults to "white".
+   * "adaptive" starts matching the hero (solid blue gradient) and
+   * switches to solid white once the page is scrolled — use this on
+   * pages whose hero sits directly under the nav with the same blue
+   * gradient background.
+   */
   background?: NavbarBackground;
 }
 
 export default function Navbar({ background = "white" }: NavbarProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState<boolean>(false);
   const logoText: string = "Aetherfield";
+
+  // Only wire up the scroll listener when it's actually needed — no point
+  // paying for it on pages using a fixed "blue"/"white"/"transparent" look.
+  useEffect(() => {
+    if (background !== "adaptive") return;
+
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll(); // set correct state on mount if already scrolled (e.g. anchor link, refresh)
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [background]);
+
+  const backgroundClassName =
+    background === "adaptive"
+      ? scrolled
+        ? BACKGROUND_CLASSNAMES.white
+        : BACKGROUND_CLASSNAMES.blue
+      : BACKGROUND_CLASSNAMES[background];
 
   return (
     <nav
-      className={`w-full text-[#0F172A] font-sans transition-colors ${BACKGROUND_CLASSNAMES[background]}`}
+      className={`sticky top-0 z-50 w-full text-[#0F172A] font-sans transition-colors duration-300 ${backgroundClassName} ${
+        background === "adaptive" && scrolled ? "shadow-sm" : ""
+      }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-1 py-2 md:py-5 h-20">
         {/* Logo */}

@@ -5,7 +5,7 @@ export default function CaseStudySection() {
   return (
     <section className="w-full py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center bg-[#F5F2ED] rounded-3xl overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center bg-[#F5F2ED]  overflow-hidden">
           
           {/* Image */}
           <div className="relative w-full h-64 lg:h-full min-h-[320px]">

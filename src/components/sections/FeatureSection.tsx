@@ -24,18 +24,30 @@ export default function FeatureSection() {
     <section className="w-full py-16 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Section Heading */}
+        {/* Section Heading — matches Figma's "Header 4 · 40/100" spec:
+            40px font-size, 100% line-height, bold (not extrabold). The
+            previous text-3xl/md:text-5xl + extrabold + leading-tight
+            combination was what read as "too different from Figma". */}
         <div className="max-w-2xl mx-auto mb-12 text-center">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          <h2
+            className="text-3xl sm:text-[40px] font-bold text-slate-900 leading-tight sm:leading-[1]"
+            style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+          >
             Everything you need to measure, model, and act on sustainability
           </h2>
         </div>
 
-        {/* Layout Grid: Image Left, List Right */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        {/* Layout Grid: Image Left, List Right.
+            items-stretch (not items-center) + h-full on the image wrapper
+            (instead of a fixed aspect-[4/3]) so the image's height always
+            matches the list column's actual height, whatever that turns
+            out to be — previously the image kept its own ratio regardless
+            of how tall the list got, so the two columns' bottoms didn't
+            line up. */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           
           {/* Image Side */}
-          <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden bg-slate-100 shadow-lg">
+          <div className="relative w-full h-full min-h-[320px] rounded-3xl overflow-hidden bg-slate-100 shadow-lg">
             <img 
               src="/images/featuresection.jpg" 
               alt="Sustainability Dashboard" 

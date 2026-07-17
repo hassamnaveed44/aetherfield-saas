@@ -1,4 +1,15 @@
 import React from 'react';
+import Image from 'next/image';
+import { Playfair_Display } from 'next/font/google';
+
+// Loaded right here, scoped to this file only — no changes needed to
+// layout.tsx or tailwind.config. `playfair.className` can then be applied
+// to just the two heading lines below, leaving every other heading on the
+// site (Our values, article titles, etc.) untouched.
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '700', '800'],
+});
 
 // Icon components based on your screenshot
 const Icon1 = () => (
@@ -9,12 +20,16 @@ const Icon1 = () => (
   </svg>
 );
 
+// CHANGED: was an inline SVG (circle + crosshair) — now the real icon
+// asset from Figma, matching the globe/grid icon in the screenshot.
 const Icon2 = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10" />
-    <circle cx="12" cy="12" r="4" />
-    <path d="M12 2v2M12 22v-2M2 12h2M22 12h-2" />
-  </svg>
+  <Image
+    src="/images/icon2.png"
+    alt=""
+    width={24}
+    height={24}
+    className="h-6 w-6 object-contain"
+  />
 );
 
 const Icon3 = () => (
@@ -50,11 +65,15 @@ export default function ValueProposition() {
       style={{ backgroundImage: "url('/images/clear.png')" }}
     >
       <div className="max-w-7xl mx-auto px-6">
-        
-        {/* Section Heading */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Built for clarity<br />
+
+        {/* Section Heading — only these two lines get the Playfair Display
+            font via playfair.className; everything else in this file (and
+            the rest of the site) stays on the regular sans font. */}
+        <div className={`${playfair.className} text-center mb-16`}>
+          <h2 className="text-3xl md:text-5xl font-normal text-slate-900 tracking-tight">
+            Built for clarity
+          </h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight">
             Designed for action
           </h2>
         </div>
