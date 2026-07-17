@@ -4,38 +4,39 @@ import Container from "@/components/layout/Container";
 /**
  * Component: FounderStory
  * Purpose: "Founder's story" section on /about — duotone portrait on the
- * left, eyebrow + name + bio on the right. The decorative circular
- * sticker continues straddling the boundary with the section above
- * (Values), same technique used there.
+ * left (with a decorative sticker pinned to its top-left corner) and
+ * eyebrow + name + bio on the right.
  * Props: none.
  */
 export default function FounderStory() {
   return (
-    <section className="relative overflow-visible bg-white py-20 sm:py-24">
-      {/* Decorative sticker — straddles the boundary with the Values section
-          above. Hidden on mobile (`hidden sm:block`) since there's no room
-          for it to float without overlapping the text/portrait below, and
-          it reads as pure decoration rather than content. */}
-      <div className="pointer-events-none absolute left-12 top-0 hidden h-32 w-32 -translate-y-1/2 sm:block">
-        <Image
-          src="/images/aboutsticker.png"
-          alt=""
-          fill
-          className="object-contain"
-        />
-      </div>
-
+    <section className="relative bg-white py-20 sm:py-24">
       <Container>
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          {/* Left: duotone portrait */}
-          <div className="relative h-[340px] w-full overflow-hidden rounded-xl sm:h-[420px]">
-            <Image
-              src="/images/aboutpgimg.png"
-              alt="Eunji Park, founder of Aetherfield"
-              fill
-              className="object-cover grayscale"
-            />
-            <div className="absolute inset-0 bg-blue-600 mix-blend-multiply" />
+          {/* Left: duotone portrait, with the decorative sticker pinned to
+              its top-left corner (half on the white space above, half over
+              the photo) — sized and placed relative to the image itself,
+              not the whole section, so it stays tight to the corner at
+              every screen size instead of floating disconnected above it. */}
+          <div className="relative w-full max-w-[612px]">
+            <div className="pointer-events-none absolute -top-8 left-4 z-10 hidden sm:-top-10 sm:left-6 sm:block sm:h-[147px] sm:w-[298px]">
+              <Image
+                src="/images/aboutsticker.png"
+                alt=""
+                fill
+                className="object-contain"
+              />
+            </div>
+
+            <div className="relative aspect-[612/700] w-full overflow-hidden">
+              <Image
+                src="/images/aboutpgimg.png"
+                alt="Eunji Park, founder of Aetherfield"
+                fill
+                className="object-cover grayscale"
+              />
+              <div className="absolute inset-0 bg-blue-600 mix-blend-multiply" />
+            </div>
           </div>
 
           {/* Right: eyebrow + name + bio */}

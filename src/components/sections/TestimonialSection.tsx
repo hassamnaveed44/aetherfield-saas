@@ -11,7 +11,7 @@ export default function TestimonialSection() {
           {/* White halo/sticker backing, offset behind the photo */}
           <div className="absolute inset-0 bg-white rounded-3xl scale-105 -z-10 shadow-md" />
 
-          <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden">
+          <div className="relative w-full aspect-[4/5] overflow-hidden">
             <Image
               src="/images/testimonialimg.jpg"
               alt="Eliot Williams"
